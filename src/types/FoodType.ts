@@ -6,6 +6,11 @@ export type Food = {
   price: number;
   _v: number;
   category: string;
-  isSale: boolean | isSale;
+  isSale:
+    | boolean
+    | {
+        isSale: boolean;
+        salePercent: number;
+      };
   img: string;
 };

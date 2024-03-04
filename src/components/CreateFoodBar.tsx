@@ -65,7 +65,7 @@ export const CreateFoodBar = () => {
         );
         setIsFoodBarVisible(false);
       }}
-      className="absolute z-5 my-32 flex flex-col bg-white items-center w-1/3 rounded-lg h-fit pb-4 border-[1px] border-solid border-black"
+      className="absolute z-30 my-32 flex flex-col bg-white items-center w-1/3 rounded-lg h-fit pb-4 border-[1px] border-solid border-black"
     >
       <div className="flex flex-col w-full">
         <div className="flex justify-between p-2">
