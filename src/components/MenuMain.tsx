@@ -33,11 +33,11 @@ export const MenuMain = ({ selectedCategoryId }: any) => {
           Add new food
         </button>
       </div>
-      <div className="flex w-full h-fit justify-start pl-8 flex-wrap gap-8">
+      <div className="flex w-full h-fit justify-start px-32 flex-wrap gap-16">
         {domFoods.length > 0 &&
           domFoods.map((el) => {
             return (
-              <div className="text-black w-1/4 h-64 rounded-lg gap-4 relative">
+              <div className="text-black w-1/4 h-64 rounded-lg flex flex-col gap-2 relative">
                 {el.isSale && (
                   <div className="flex justify-end w-full h-fit absolute">
                     <div className="absolute bg-green-500 text-white font-semibold w-fit h-fit p-2 rounded-xl mt-2 mr-2 border-[1px] border-solid border-white">
