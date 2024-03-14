@@ -10,7 +10,10 @@ import { isCategoryBarVisibleContext } from "@/context/createCategoryVisiblity";
 import { EditbleCategoryContext } from "@/context/EditableCategory";
 import { Category } from "@/types/CategoryType";
 
-export const MenuSideBar = ({ setSelectedCategoryId }: any) => {
+export const MenuSideBar = ({
+  setSelectedCategoryId,
+  setSelectedCategoryName,
+}: any) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategoryies] = useState<Category[]>([]);
   const { editCategoryVisiblity, setEditCategoryVisiblity } = useContext(
@@ -42,8 +45,10 @@ export const MenuSideBar = ({ setSelectedCategoryId }: any) => {
             return (
               <button
                 id={`${el?._id}`}
+                key={el._id}
                 onClick={(e: any) => {
                   setSelectedCategoryId(e.target.id);
+                  setSelectedCategoryName(el.name);
                   setSelectedCategory(e.target.id);
                 }}
                 onDoubleClick={() => setSelectedCategory("")}

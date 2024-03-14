@@ -5,7 +5,7 @@ import { valuesType } from "@/types/valuesType";
 export const createNewFood = async (
   e: React.FormEvent<HTMLFormElement>,
   errors: foodErrorType,
-  saleFunction: () => boolean | Object,
+  saleFunction: () => Object,
   values: valuesType,
   category: string,
   img: File | null

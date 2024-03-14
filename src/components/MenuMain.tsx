@@ -3,12 +3,15 @@ import { getFoods } from "@/utilities/getFoods";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Food } from "@/types/FoodType";
 
-export const MenuMain = ({ selectedCategoryId }: any) => {
+export const MenuMain = ({ selectedCategoryId, selectedCategoryName }: any) => {
   const { isFoodBarVisible, setIsFoodBarVisible } = useContext(
     isFoodBarVisibleContext
   );
+
   const [foods, setFoods] = useState<Food[]>([]);
   const [domFoods, setDomFoods] = useState<Food[]>([]);
+  const [onHover, setOnHover] = useState(false);
+  const [hoveredId, setHoveredId] = useState("");
   const setFoodsFromDB = (data: Food[]) => {
     setFoods(data);
     setDomFoods(data);
@@ -25,7 +28,9 @@ export const MenuMain = ({ selectedCategoryId }: any) => {
   return (
     <div className="flex flex-col w-4/5">
       <div className="flex justify-between items-center px-16 h-[100px]">
-        <p className="text-3xl font-semibold text-black">Breakfast</p>
+        <p className="text-3xl font-semibold text-black">
+          {selectedCategoryName}
+        </p>
         <button
           onClick={() => setIsFoodBarVisible(true)}
           className="text-white bg-green-500 w-48 h-12 text-lg rounded-lg"
@@ -37,28 +42,61 @@ export const MenuMain = ({ selectedCategoryId }: any) => {
         {domFoods.length > 0 &&
           domFoods.map((el) => {
             return (
-              <div className="text-black w-1/4 h-64 rounded-lg flex flex-col gap-2 relative">
-                {el.isSale && (
-                  <div className="flex justify-end w-full h-fit absolute">
+              <div
+                key={el._id}
+                className="text-black w-1/4 h-64 rounded-lg flex flex-col gap-2 relative"
+              >
+                {el.isSale.salePercent > 0 && (
+                  <div className="flex justify-end w-full h-48 z-50 absolute">
                     <div className="absolute bg-green-500 text-white font-semibold w-fit h-fit p-2 rounded-xl mt-2 mr-2 border-[1px] border-solid border-white">
-                      {/* {el.isSale.salePercent}% */}
+                      {el.isSale.salePercent}%
                     </div>
                   </div>
                 )}
-                <img src={`${el.img}`} className="w-full h-48 rounded-lg" />
+                <div
+                  onMouseEnter={(e) => {
+                    setHoveredId(e.target.id);
+                    setOnHover(true);
+                  }}
+                  onMouseLeave={() => setOnHover(false)}
+                  className="flex w-full h-fit justify-center items-center"
+                >
+                  <img
+                    id={el._id}
+                    src={`${el.img}`}
+                    className="w-full h-48 rounded-lg relative"
+                  />
+                  <div
+                    className={`absolute w-full rounded-lg h-48 opacity-50 z-30 bg-black ${
+                      onHover && hoveredId === el._id ? "flex" : "hidden"
+                    }`}
+                  ></div>
+                  <button
+                    className={`w-16 h-8 text-white rounded-xl bg-green-500 absolute z-50 justify-center items-center ${
+                      onHover && hoveredId === el._id ? "flex" : "hidden"
+                    }`}
+                  >
+                    Edit
+                  </button>
+                </div>
                 <p className="font-bold text-xl">{el.name}</p>
                 <div className="text-green-500 font-semibold">
-                  {/* {el.isSale.isSale ? (
+                  {el.isSale.salePercent > 0 ? (
                     <div className="flex gap-2">
-                      <p>{(el.price / 100) * (100 - el.isSale.salePercent)}₮</p>
+                      <p>
+                        {(
+                          (el.price / 100) *
+                          (100 - el.isSale.salePercent)
+                        ).toLocaleString()}
+                        ₮
+                      </p>
                       <p className="line-through text-black">
                         {el.price.toLocaleString()}₮
                       </p>
                     </div>
                   ) : (
-                    <p>{el.price}</p>
-                  )} */}
-                  <p>{el.price}</p>
+                    <p>{el.price.toLocaleString()}₮</p>
+                  )}
                 </div>
               </div>
             );

@@ -1,7 +1,4 @@
-import { instance } from "@/Instance";
-import { Category } from "@/types/CategoryType";
-
-export const deleteCategory = async (deleteableCategory: Category) => {
+export const deleteCategory = async (deleteableCategory: any) => {
   try {
     const res = await fetch("http://localhost:3005/deleteCategory", {
       method: "DELETE",

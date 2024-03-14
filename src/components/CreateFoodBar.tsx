@@ -1,20 +1,12 @@
-import { instance } from "@/Instance";
 import { isFoodBarVisibleContext } from "@/context/createFoodVisiblity";
 import { Cancel } from "@/svg/Cancel";
 import { getCategoriesFromDatabass } from "@/utilities/getCategories";
 import { CreateFoodSchema } from "@/validations/createFoodValidation";
 import { useFormik } from "formik";
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Category } from "@/types/CategoryType";
 import { createNewFood } from "@/utilities/createFood";
 import { getSelectedCategoryId } from "@/utilities/getSelectedCategoryId";
-import axios from "axios";
 import { object } from "yup";
 
 export const CreateFoodBar = () => {
@@ -39,7 +31,9 @@ export const CreateFoodBar = () => {
     onSubmit: () => {},
   });
   const checkHasFoodSale = () => {
-    if (isSale === false) return false;
+    if (isSale === false) {
+      return { isSale: isSale, salePercent: 0 };
+    }
     return { isSale: isSale, salePercent: values.salePercent };
   };
   const getCategories = (data: Category[]) => {

@@ -12,19 +12,19 @@ export const Header = (props: Props) => {
     <div className="flex w-full px-32 h-1/6 justify-between py-4 bg-white">
       <nav className="flex items-center gap-16">
         <button
-          // onClick={() => router.push("/")}
+          onClick={() => router.push("/")}
           className="w-6 h-6 rounded-[50]"
         >
           <Logo />
         </button>
         <button
-          // onClick={() => router.push("/")}
+          onClick={() => router.push("/")}
           className="text-black font-semibold w-fit h-8"
         >
           НҮҮР
         </button>
         <button
-          // onClick={() => router.push("/menu")}
+          onClick={() => router.push("/menu")}
           className="text-black font-semibold w-fit h-8"
         >
           ХООЛНЫ ЦЭС

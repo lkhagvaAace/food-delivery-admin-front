@@ -25,7 +25,7 @@ export const Categorybar = () => {
   return (
     <form
       onSubmit={insertFoodIntoDB}
-      className="flex absolute mt-32 bg-white flex-col items-center w-96 rounded-lg h-fit py-8 px-4 border-[1px] border-solid border-black z-30"
+      className="flex absolute bg-white flex-col items-center w-96 rounded-lg h-fit py-8 px-4 border-[1px] border-solid border-black z-30"
     >
       <div className="flex flex-col w-full">
         <div className="flex justify-between p-2">
