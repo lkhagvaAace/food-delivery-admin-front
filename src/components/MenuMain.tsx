@@ -55,7 +55,6 @@ export const MenuMain = ({ selectedCategoryId, selectedCategoryName }: any) => {
                 )}
                 <div
                   onMouseEnter={(e) => {
-                    setHoveredId(e.target.id);
                     setOnHover(true);
                   }}
                   onMouseLeave={() => setOnHover(false)}
@@ -66,18 +65,6 @@ export const MenuMain = ({ selectedCategoryId, selectedCategoryName }: any) => {
                     src={`${el.img}`}
                     className="w-full h-48 rounded-lg relative"
                   />
-                  <div
-                    className={`absolute w-full rounded-lg h-48 opacity-50 z-30 bg-black ${
-                      onHover && hoveredId === el._id ? "flex" : "hidden"
-                    }`}
-                  ></div>
-                  <button
-                    className={`w-16 h-8 text-white rounded-xl bg-green-500 absolute z-50 justify-center items-center ${
-                      onHover && hoveredId === el._id ? "flex" : "hidden"
-                    }`}
-                  >
-                    Edit
-                  </button>
                 </div>
                 <p className="font-bold text-xl">{el.name}</p>
                 <div className="text-green-500 font-semibold">
