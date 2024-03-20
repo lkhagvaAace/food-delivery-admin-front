@@ -2,7 +2,7 @@ import { Category } from "@/types/CategoryType";
 
 export const editCategory = async (
   e: React.FormEvent<HTMLFormElement>,
-  category: Category,
+  category: Category | null,
   newCategory: string,
   error: string | undefined
 ) => {
