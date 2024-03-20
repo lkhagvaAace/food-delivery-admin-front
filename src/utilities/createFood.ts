@@ -11,12 +11,21 @@ export const createNewFood = async (
   img: File | null
 ) => {
   e.preventDefault();
-
   try {
-    // if (errors.name || errors.ingredients || errors.price) {
-    //   alert("Not valid. Please check the form for errors.");
-    //   return;
-    // }
+    if (
+      errors.name ||
+      errors.ingredients ||
+      errors.price ||
+      values.img ||
+      values.category ||
+      values.ingredients ||
+      values.name ||
+      values.price ||
+      values.salePercent
+    ) {
+      alert("Not valid. Please check the form for errors.");
+      return;
+    }
 
     if (!img) {
       alert("Please select an image.");

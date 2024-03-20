@@ -60,12 +60,12 @@ const index = ({ orderData, count }: { orderData: Order[]; count: number }) => {
                      justify-between"
                   >
                     <div className="flex w-1/6 h-full gap-2">
-                      <img className="w-24 h-16" src={`${el.foods[0].img}`} />
+                      <img className="w-24 h-16" src={`${el.foods[0]?.img}`} />
                       <div className="flex w-1/2 flex-col">
                         <p className="text-lg font-semibold">
                           #{el.orderNumber}
                         </p>
-                        <p className="text-sm">{el.foods[0].name}</p>
+                        <p className="text-sm">{el.foods[0]?.name}</p>
                       </div>
                     </div>
                     <div className="flex flex-col text-sm mt-2">
@@ -103,7 +103,13 @@ const index = ({ orderData, count }: { orderData: Order[]; count: number }) => {
         </div>
       </div>
       <div className="w-3/4 justify-between flex text-black font-semibold mt-8">
-        <button className="border-black border-solid border-[1px] rounded-lg px-4 py-2 bg-white flex gap-2 items-center">
+        <button
+          onClick={() => {
+            if (selectedCount == 1) return;
+            setSelectedCount(selectedCount - 1);
+          }}
+          className="border-black border-solid border-[1px] rounded-lg px-4 py-2 bg-white flex gap-2 items-center"
+        >
           <span className="w-1/3 h-full flex justify-center items-center">
             <Left />
           </span>
@@ -125,7 +131,13 @@ const index = ({ orderData, count }: { orderData: Order[]; count: number }) => {
               );
             })}
         </div>
-        <button className="border-black border-solid border-[1px] rounded-lg px-4 py-2 bg-white flex gap-2 items-center">
+        <button
+          onClick={() => {
+            if (Math.ceil(count / 8) == selectedCount) return;
+            setSelectedCount(selectedCount + 1);
+          }}
+          className="border-black border-solid border-[1px] rounded-lg px-4 py-2 bg-white flex gap-2 items-center"
+        >
           Next
           <span className="w-1/3 h-full flex justify-center items-center">
             <Right />

@@ -16,20 +16,21 @@ export const CreateFoodBar = () => {
   const [categories, setCategoryies] = useState<Category[]>([]);
   const [selectedCategoryForFood, setSelectedCategoryForFood] = useState("");
   const [isSale, setIsSale] = useState(false);
-  const [imgFile, setImgFile] = useState({});
-  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      name: "",
-      category: categories[0]?.name,
-      ingredients: "",
-      price: 0,
-      isSale: false,
-      salePercent: 0,
-      img: object,
-    },
-    validationSchema: CreateFoodSchema,
-    onSubmit: () => {},
-  });
+  const [imgFile, setImgFile] = useState(null);
+  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
+    useFormik({
+      initialValues: {
+        name: "",
+        category: categories[0]?.name,
+        ingredients: "",
+        price: 0,
+        isSale: false,
+        salePercent: 0,
+        img: object,
+      },
+      validationSchema: CreateFoodSchema,
+      onSubmit: () => {},
+    });
   const checkHasFoodSale = () => {
     if (isSale === false) {
       return { isSale: isSale, salePercent: 0 };
@@ -85,7 +86,7 @@ export const CreateFoodBar = () => {
           placeholder="Food"
           type="text"
         />
-        {errors.name ? (
+        {errors.name && touched.name ? (
           <p className="text-sm text-red-500 pl-8">{errors.name}</p>
         ) : null}
       </div>
@@ -117,7 +118,7 @@ export const CreateFoodBar = () => {
           type="text"
           required={true}
         />
-        {errors.ingredients ? (
+        {errors.ingredients && touched.ingredients ? (
           <p className="text-sm text-red-500 pl-8">{errors.ingredients}</p>
         ) : null}
       </div>
@@ -132,7 +133,7 @@ export const CreateFoodBar = () => {
           placeholder="Food"
           type="text"
         />
-        {errors.price ? (
+        {errors.price && touched.price ? (
           <p className="text-sm text-red-500 pl-8">{errors.price}</p>
         ) : null}
       </div>
@@ -177,7 +178,9 @@ export const CreateFoodBar = () => {
           <input
             id="file"
             type="file"
-            onChange={(e) => setImgFile(e.target.files[0])}
+            onChange={(e) => {
+              setImgFile(e.target.files[0]);
+            }}
             multiple={false}
             className="file-input file-input-bordered w-full max-w-xs"
           />

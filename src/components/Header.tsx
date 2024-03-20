@@ -19,13 +19,17 @@ export const Header = (props: Props) => {
         </button>
         <button
           onClick={() => router.push("/")}
-          className="text-black font-semibold w-fit h-8"
+          className={`${
+            router.asPath === "/" ? "text-green-500" : "text-black"
+          } font-semibold w-fit h-8`}
         >
           НҮҮР
         </button>
         <button
           onClick={() => router.push("/menu")}
-          className="text-black font-semibold w-fit h-8"
+          className={`${
+            router.asPath === "/menu" ? "text-green-500" : "text-black"
+          } font-semibold w-fit h-8`}
         >
           ХООЛНЫ ЦЭС
         </button>
