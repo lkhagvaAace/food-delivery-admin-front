@@ -7,7 +7,7 @@ export const createNewFood = async (
   errors: foodErrorType,
   saleFunction: () => Object,
   values: valuesType,
-  category: string,
+  category: any,
   img: File | null
 ) => {
   e.preventDefault();

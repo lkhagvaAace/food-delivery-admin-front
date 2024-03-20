@@ -14,23 +14,24 @@ export const CreateFoodBar = () => {
     isFoodBarVisibleContext
   );
   const [categories, setCategoryies] = useState<Category[]>([]);
-  const [selectedCategoryForFood, setSelectedCategoryForFood] = useState("");
+  const [selectedCategoryForFood, setSelectedCategoryForFood] = useState<
+    string | void
+  >("");
   const [isSale, setIsSale] = useState(false);
-  const [imgFile, setImgFile] = useState(null);
-  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
-    useFormik({
-      initialValues: {
-        name: "",
-        category: categories[0]?.name,
-        ingredients: "",
-        price: 0,
-        isSale: false,
-        salePercent: 0,
-        img: object,
-      },
-      validationSchema: CreateFoodSchema,
-      onSubmit: () => {},
-    });
+  const [imgFile, setImgFile] = useState<File | null>(null);
+  const { values, errors, handleBlur, handleChange, touched } = useFormik({
+    initialValues: {
+      name: "",
+      category: categories[0]?.name,
+      ingredients: "",
+      price: 0,
+      isSale: false,
+      salePercent: 0,
+      img: object,
+    },
+    validationSchema: CreateFoodSchema,
+    onSubmit: () => {},
+  });
   const checkHasFoodSale = () => {
     if (isSale === false) {
       return { isSale: isSale, salePercent: 0 };
@@ -179,6 +180,7 @@ export const CreateFoodBar = () => {
             id="file"
             type="file"
             onChange={(e) => {
+              if (!e.target.files) return;
               setImgFile(e.target.files[0]);
             }}
             multiple={false}
