@@ -9,7 +9,7 @@ export const editCategory = async (
   e.preventDefault();
   try {
     if (error) return alert("Please enter valid name!");
-    const res = await fetch("http://localhost:3005/editCategory", {
+    const res = await fetch("http://localhost:8080/editCategory", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -17,7 +17,7 @@ export const editCategory = async (
         newCategoryName: newCategory,
       }),
     });
-    return await res.status;
+    return res.status;
   } catch (error) {
     console.error("error in editCategory", error);
   }

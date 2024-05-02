@@ -1,6 +1,6 @@
 export const deleteCategory = async (deleteableCategory: any) => {
   try {
-    const res = await fetch("http://localhost:3005/deleteCategory", {
+    const res = await fetch("http://localhost:8080/deleteCategory", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(deleteableCategory),

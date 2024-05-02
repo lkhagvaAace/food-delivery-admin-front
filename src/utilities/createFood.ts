@@ -43,7 +43,7 @@ export const createNewFood = async (
     };
     form.append("newFood", JSON.stringify(newFood));
 
-    const res = await fetch("http://localhost:3005/createFood", {
+    const res = await fetch("http://localhost:8080/createFood", {
       method: "POST",
       body: form,
     });

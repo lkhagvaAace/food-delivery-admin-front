@@ -30,7 +30,7 @@ const index = ({ orderData, count }: { orderData: Order[]; count: number }) => {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center">
       <Header />
-      <div className="flex flex-col mt-16 w-3/4 h-[800px] bg-white rounded-lg">
+      <div className="flex flex-col mt-16 mb-32 w-3/4 h-[800px] bg-white rounded-lg">
         <div className="flex justify-between items-center px-12 h-[100px]">
           <p className="text-3xl font-semibold text-black">Admin dashboard</p>
           <input
@@ -81,8 +81,14 @@ const index = ({ orderData, count }: { orderData: Order[]; count: number }) => {
                         </p>
                         <p>{el.createdDate}</p>
                       </div>
-                      <p className="bg-green-300 text-lg px-4 py-2 h-fit rounded-xl text-[#0A4E22]">
-                        Paid
+                      <p
+                        className={` ${
+                          el.paymentStatus === "NOTPAID"
+                            ? "bg-orange-500"
+                            : "bg-green-500"
+                        } text-lg px-4 py-2 h-fit rounded-xl text-[#0A4E22]`}
+                      >
+                        {el.paymentStatus ? el.paymentStatus : "PAID"}
                       </p>
                     </div>
                     <p className="text-sm w-1/6 pt-4">
@@ -102,7 +108,7 @@ const index = ({ orderData, count }: { orderData: Order[]; count: number }) => {
           </div>
         </div>
       </div>
-      <div className="w-3/4 justify-between flex text-black font-semibold mt-8">
+      <div className="w-3/4 justify-between flex text-black font-semibold mt-8 mb-16">
         <button
           onClick={() => {
             if (selectedCount == 1) return;

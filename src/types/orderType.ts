@@ -7,6 +7,7 @@ export type Order = {
   process: string;
   totalPrice: number;
   userId: User;
+  paymentStatus: string;
   _id: string;
   createdDate: string;
 };
