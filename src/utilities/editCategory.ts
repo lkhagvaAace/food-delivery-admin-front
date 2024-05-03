@@ -9,14 +9,17 @@ export const editCategory = async (
   e.preventDefault();
   try {
     if (error) return alert("Please enter valid name!");
-    const res = await fetch("http://localhost:8080/editCategory", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        category: category,
-        newCategoryName: newCategory,
-      }),
-    });
+    const res = await fetch(
+      "https://food-delivery-back-1.onrender.com/editCategory",
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          category: category,
+          newCategoryName: newCategory,
+        }),
+      }
+    );
     return res.status;
   } catch (error) {
     console.error("error in editCategory", error);

@@ -34,13 +34,6 @@ export const Header = (props: Props) => {
           ХООЛНЫ ЦЭС
         </button>
       </nav>
-      <div className="flex justify-center items-center gap-16">
-        <input
-          type="text"
-          placeholder="Хайх"
-          className="border-2 border-black border-solid rounded-lg w-64 h-12 pl-4 bg-white text-gray-600 px-4"
-        />
-      </div>
     </div>
   );
 };

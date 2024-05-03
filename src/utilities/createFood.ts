@@ -43,10 +43,13 @@ export const createNewFood = async (
     };
     form.append("newFood", JSON.stringify(newFood));
 
-    const res = await fetch("http://localhost:8080/createFood", {
-      method: "POST",
-      body: form,
-    });
+    const res = await fetch(
+      "https://food-delivery-back-1.onrender.com/createFood",
+      {
+        method: "POST",
+        body: form,
+      }
+    );
 
     console.log("Response:", res);
   } catch (error) {
